@@ -5,7 +5,6 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-using namespace std;
 
 int main (int argc, char* argv[])
 {
@@ -13,20 +12,19 @@ int main (int argc, char* argv[])
 		std::cerr << "Usage:" << argv[0] << " filename" <<std::endl;
 		return 1;
 	}
-	string filename;
-	filename = argv[1];
-	ifstream is(filename);
-	if (is.is_open())
+	std::string filename = argv[1];
+	std::ifstream file(filename);
+	if (file.is_open())
 	{
-		ofstream keyfile;
+		std::ofstream keyfile;
 		keyfile.open(filename+"_key");
-		ofstream datafile;
+		std::ofstream datafile;
 		datafile.open(filename+"_data");
        		srand (time(NULL));
 		char c;
-		string ks;
-		string os;
-		while (is.get(c))
+		std::string ks;
+		std::string os;
+		while (file.get(c))
 		{ 
 			int k;
 		        k = rand() % 126+ 1;
@@ -35,7 +33,7 @@ int main (int argc, char* argv[])
 			keyfile.put((char)k);
 			datafile.put((char)o);
 		}
-		is.close();
+		file.close();
 		datafile.close();
 		keyfile.close();
 	}

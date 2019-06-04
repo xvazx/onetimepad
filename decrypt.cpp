@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include <cstring>
-using namespace std;
 
 int main (int argc, char* argv[])
 {
@@ -10,19 +9,15 @@ int main (int argc, char* argv[])
 		std::cerr << "Usage:" << argv[0] << " datafile" << "keyfile" << "output" <<std::endl;
 		return 1;
 	}
-	string dataname;
-	string keyname;
-	dataname = argv[1];
-	keyname = argv[2];
-	ifstream datafile;
-	ifstream keyfile;
+	std::string dataname= argv[1];
+	std::string keyname = argv[2];
+	std::ifstream datafile;
+	std::ifstream keyfile;
 	datafile.open(dataname);
 	keyfile.open(keyname);
 	if (keyfile.is_open() && datafile.is_open())
 	{
-		string lined;
-		string linek;
-		ofstream outfile (argv[3]);
+		std::ofstream outfile (argv[3]);
 		char d;
 		char k;
 		while ( datafile.get(d) && keyfile.get(k) )
